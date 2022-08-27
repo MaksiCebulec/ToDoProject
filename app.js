@@ -7,11 +7,12 @@ form.addEventListener('click', (e) => {
     e.preventDefault();
 });
 let num = 1;
-const allTasks = [];
+const toDoTasks = [];
+const doneTasks = [];
 function createTask() {
     if (!(taskInput.value === '')) {
         const taskText = taskInput.value;
-        allTasks.push(taskText);
+        toDoTasks.push(taskText);
         const label = document.createElement('label');
         label.setAttribute('for', `li${num}`);
         label.setAttribute('class', `labels`);
@@ -43,31 +44,29 @@ function ifChecked() {
         label.onclick = function () {
             console.log('In function');
             const input = this.childNodes[0];
+            const li = this.childNodes[1];
             if (input.checked) {
                 input.checked = false;
-                const li = this.childNodes[1];
                 li.removeAttribute('style');
                 ul.append(this);
             } else {
                 input.checked = true;
-                const li = this.childNodes[1];
                 li.setAttribute('style', 'text-decoration: line-through;');
                 doneList.append(this);
+                for (let i = 0; i < toDoTasks.length; i++) {
+                    console.log('array: ', toDoTasks);
+                    console.log('Task', toDoTasks[i]);
+                    console.log('LI', li.innerText);
+                    if (toDoTasks[i] == li.innerText) {
+                        console.log('in if');
+                        doneTasks.append(toDoTasks[i]);
+                        toDoTasks.splice(i, 1);
+                    }
+                }
             }
 
         }
     }
-
-    // for (let checkbox of checkboxes) {
-    //     console.log('Checking');
-    //     if (checkbox.checked) {
-    //         console.log(checkbox.nextSibling);
-    //         const li = checkbox.nextSibling;
-    //         li.setAttribute('style', 'text-decoration: line-through;');
-    //     } else if (!(checkbox.checked)) {
-
-    //     }
-    // }
 }
 
 ifChecked();
