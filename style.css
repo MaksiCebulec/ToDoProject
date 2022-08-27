@@ -2,3 +2,12 @@ h1 {
     text-align: center;
     font-size: 3rem;
 }
+
+ul {
+    font-size: 1.5rem;
+}
+
+li {
+    display: inline;
+    text-decoration: none;
+}
