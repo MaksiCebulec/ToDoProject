@@ -11,3 +11,9 @@ li {
     display: inline;
     text-decoration: none;
 }
+
+section {
+    display: flex;
+    justify-content: space-between;
+    width: 33%;
+}

@@ -9,28 +9,33 @@ form.addEventListener('click', (e) => {
 let num = 1;
 const allTasks = [];
 function createTask() {
-    const taskText = taskInput.value;
-    allTasks.push(taskText);
-    const label = document.createElement('label');
-    label.setAttribute('for', `li${num}`);
-    label.setAttribute('class', `labels`);
-    ul.append(label);
-    const checkbox = document.createElement('input');
-    checkbox.setAttribute('type', 'checkbox');
-    checkbox.setAttribute('id', `li${num}`);
-    checkbox.setAttribute('class', `lis`);
-    label.append(checkbox);
-    const li = document.createElement('li');
-    li.innerText = taskText;
-    label.append(li);
-    const br = document.createElement('br');
-    li.append(br);
-    console.dir(checkbox);
-    taskInput.value = '';
-    num++;
-    ifChecked();
-}
+    if (!(taskInput.value === '')) {
+        const taskText = taskInput.value;
+        allTasks.push(taskText);
+        const label = document.createElement('label');
+        label.setAttribute('for', `li${num}`);
+        label.setAttribute('class', `labels`);
+        ul.append(label);
+        const checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('id', `li${num}`);
+        checkbox.setAttribute('class', `lis`);
+        label.append(checkbox);
+        const li = document.createElement('li');
+        li.innerText = taskText;
+        label.append(li);
+        const br = document.createElement('br');
+        li.append(br);
+        console.dir(checkbox);
+        taskInput.value = '';
+        num++;
+        ifChecked();
+    } else {
+        alert('Write a task');
+    }
 
+}
+const doneList = document.querySelector('#doneList');
 function ifChecked() {
     const checkboxes = document.querySelectorAll('.lis');
     const labels = document.querySelectorAll('.labels');
@@ -42,10 +47,12 @@ function ifChecked() {
                 input.checked = false;
                 const li = this.childNodes[1];
                 li.removeAttribute('style');
+                ul.append(this);
             } else {
                 input.checked = true;
                 const li = this.childNodes[1];
                 li.setAttribute('style', 'text-decoration: line-through;');
+                doneList.append(this);
             }
 
         }
