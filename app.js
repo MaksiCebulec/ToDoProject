@@ -49,17 +49,28 @@ function ifChecked() {
                 input.checked = false;
                 li.removeAttribute('style');
                 ul.append(this);
+                for (let i = 0; i < doneTasks.length; i++) {
+                    console.log('array: ', toDoTasks);
+                    console.log('Task', typeof toDoTasks[i]);
+
+                    if (doneTasks[i] === li.textContent) {
+                        console.log('in if', li.innerText);
+                        toDoTasks.push(doneTasks[i]);
+                        doneTasks.splice(i, 1);
+                    }
+                }
             } else {
                 input.checked = true;
                 li.setAttribute('style', 'text-decoration: line-through;');
+                console.log('THIS:', this.innerHTML);
                 doneList.append(this);
                 for (let i = 0; i < toDoTasks.length; i++) {
                     console.log('array: ', toDoTasks);
-                    console.log('Task', toDoTasks[i]);
-                    console.log('LI', li.innerText);
-                    if (toDoTasks[i] == li.innerText) {
-                        console.log('in if');
-                        doneTasks.append(toDoTasks[i]);
+                    console.log('Task', typeof toDoTasks[i]);
+
+                    if (toDoTasks[i] === li.textContent) {
+                        console.log('in if', li.innerText);
+                        doneTasks.push(toDoTasks[i]);
                         toDoTasks.splice(i, 1);
                     }
                 }
